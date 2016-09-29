@@ -1,0 +1,14 @@
+{
+    "name": "prismicio/php-quickstart",
+    "description": "Quickstart project for plain PHP – Works with any prismic.io repository",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "prismic.io",
+            "email": "contact@prismic.io"
+        }
+    ],
+    "require": {
+        "prismic/php-sdk": "2.0.3"
+    }
+}
