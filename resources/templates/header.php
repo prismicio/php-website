@@ -24,7 +24,7 @@
 
     <header class="site-header">
       <a href="/">
-        <div class="logo">John Doe</div>
+        <div class="logo">Example Site</div>
       </a>
       
       <?php
