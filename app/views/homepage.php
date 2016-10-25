@@ -1,24 +1,15 @@
 <?php
 
-require_once '../resources/config.php';
-include_once(__DIR__.'/../vendor/autoload.php');
+$prismic = $WPGLOBAL['prismic'];
+$pageContent = $WPGLOBAL['pageContent'];
+$menuContent = $WPGLOBAL['menuContent'];
 
-use Prismic\Api;
-
-try {
-  $api = Api::get($PRISMIC_URL, $PRISMIC_TOKEN);
-  $pageContent = $api->getByUID("homepage", "homepage");
-  $menuContent = $api->getByUID("menu", "main-nav");
-} catch (Guzzle\Http\Exception\BadResponseException $e) {
-  handlePrismicHelperException($e);
-}
-
-$title="PHP Sample Website";
+$title = SITE_TITLE;
 $isHomepage = true;
 
-require_once(TEMPLATES_PATH . "/header.php");
 ?>
 
+<?php include 'header.php'; ?>
 
 <section class="homepage-banner" style="background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url(<?= $pageContent->getImage("homepage.backgroundImage")->getUrl() ?>)">
   <div class="banner-content container">
@@ -29,12 +20,11 @@ require_once(TEMPLATES_PATH . "/header.php");
       // If both the button link and button text are defined in the prismic.io repo
       if  ( $pageContent->getLink("homepage.buttonLink") && $pageContent->getText("homepage.buttonText") ) { 
     ?>
-    <a href="<?= $pageContent->getLink('homepage.buttonLink')->getUrl($linkResolver) ?>" class="banner-button"><?= $pageContent->getText("homepage.buttonText") ?></a>
+    <a href="<?= $pageContent->getLink('homepage.buttonLink')->getUrl($prismic->linkResolver) ?>" class="banner-button"><?= $pageContent->getText("homepage.buttonText") ?></a>
     <?php } ?>
     
   </div>
 </section>
-
 
 <div class="container">
   <?php 
@@ -47,19 +37,19 @@ require_once(TEMPLATES_PATH . "/header.php");
         //- Render the right markup for a given slice type.
         switch($slice->getSliceType()) {
           case 'heading':
-            require(TEMPLATES_PATH . "/section-heading.php");
+            include("slices/section-heading.php");
             break;
           case 'textSection':
-            require(TEMPLATES_PATH . "/text-section.php");
+            include("slices/text-section.php");
             break;
           case 'fullWidthImage':
-            require(TEMPLATES_PATH . "/full-width-image.php");
+            include("slices/full-width-image.php");
             break;
           case 'highlight':
-            require(TEMPLATES_PATH . "/highlight.php");
+            include("slices/highlight.php");
             break;
           case 'gallery':
-            require(TEMPLATES_PATH . "/gallery.php");
+            include("slices/gallery.php");
             break;
         }
       }
@@ -67,5 +57,4 @@ require_once(TEMPLATES_PATH . "/header.php");
   ?>
 </div>
 
-<?php
-  require_once(TEMPLATES_PATH . "/footer.php");
+<?php include 'footer.php'; ?>

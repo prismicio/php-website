@@ -1,1 +1,1 @@
-cd ./public_html && php -S localhost:8000
+cd ./public && php -S localhost:8000

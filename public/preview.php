@@ -16,4 +16,3 @@ try {
 } catch (Guzzle\Http\Exception\BadResponseException $e) {
   handlePrismicHelperException($e);
 }
-

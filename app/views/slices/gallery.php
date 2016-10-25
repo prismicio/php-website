@@ -7,13 +7,13 @@
   
   <div class="gallery-item">
     <img src="<?= $galleryItem->getImage("image")->getUrl() ?>"/>
-    <?= $galleryItem->getStructuredText("description")->asHtml($linkResolver); ?>
+    <?= $galleryItem->getStructuredText("description")->asHtml($prismic->linkResolver); ?>
 
     <?php
       // if there is a link and text text
       if ( $galleryItem->getLink("link") && $galleryItem->getText("linkText") ) {
     ?>
-    <p class="gallery-link"><a href="<?= $galleryItem->getLink('link')->getUrl($linkResolver) ?>"><?= $galleryItem->getText("linkText") ?></a></p>
+    <p class="gallery-link"><a href="<?= $galleryItem->getLink('link')->getUrl($prismic->linkResolver) ?>"><?= $galleryItem->getText("linkText") ?></a></p>
     <?php } ?>
   </div>
   <?php } ?>

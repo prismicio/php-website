@@ -12,5 +12,5 @@ if ( $textSectionSlice->getLabel() ) {
 ?>
 
 <section class="content-section <?= $sectionClass ?>">
-  <?= $textSectionSlice->asHtml($linkResolver) ?>
+  <?= $textSectionSlice->asHtml($prismic->linkResolver) ?>
 </section>

@@ -1,14 +1,12 @@
 {
-    "name": "prismicio/php-quickstart",
-    "description": "Quickstart project for plain PHP – Works with any prismic.io repository",
-    "license": "Apache-2.0",
-    "authors": [
-        {
-            "name": "prismic.io",
-            "email": "contact@prismic.io"
-        }
-    ],
-    "require": {
-        "prismic/php-sdk": "2.0.3"
-    }
+  "name": "PHP Quickstart",
+  "version": "0.1",
+  "require": {
+    "slim/slim": "3.*",
+    "prismic/php-sdk": "3.*"
+    },
+  "require-dev": {
+    "there4/slim-test-helpers": "dev-master",
+    "phpunit/phpunit": "4.*"
+  }
 }
