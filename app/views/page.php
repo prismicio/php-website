@@ -11,30 +11,30 @@ $isHomepage = false;
 
 <?php include 'header.php'; ?>
     
-<div class="container">
+<div class="container" data-wio-id=<?= $pageContent->getId() ?>>
   <?php 
     // If there are any slices
-    if ( $pageContent->getSliceZone('page.body') !== null ) {
+    if ( $pageContent->getSliceZone('page.page_content') !== null ) {
       
       // Display the slices
-      foreach ( $pageContent->getSliceZone('page.body')->getSlices() as $slice ) {
+      foreach ( $pageContent->getSliceZone('page.page_content')->getSlices() as $slice ) {
         
         //- Render the right markup for a given slice type.
         switch($slice->getSliceType()) {
-          case 'heading':
-            require("slices/section-heading.php");
+          case 'text_section':
+            include("slices/text-section.php");
             break;
-          case 'textSection':
-            require("slices/text-section.php");
+          case 'quote':
+            include("slices/quote.php");
             break;
-          case 'fullWidthImage':
-            require("slices/full-width-image.php");
+          case 'full_width_image':
+            include("slices/full-width-image.php");
             break;
-          case 'highlight':
-            require("slices/highlight.php");
+          case 'image_gallery':
+            include("slices/gallery.php");
             break;
-          case 'gallery':
-            require("slices/gallery.php");
+          case 'image_highlight':
+            include("slices/highlight.php");
             break;
         }
       }

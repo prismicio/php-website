@@ -1,18 +1,23 @@
-<?php $highlight = $slice->getValue()->getArray()[0]; ?>
+<?php 
+$highlightTitle = $slice->getPrimary()->getStructuredText("title");
+$highlightHeadline = $slice->getPrimary()->getStructuredText("headline");
+?>
+
+
 <section class="highlight content-section">
   <div class="highlight-left">
-    <?= $highlight->getStructuredText("title")->asHtml($prismic->linkResolver); ?>
-    <?= $highlight->getStructuredText("headline")->asHtml($prismic->linkResolver); ?>
+    <?= $highlightTitle->asHtml($prismic->linkResolver); ?>
+    <?= $highlightHeadline->asHtml($prismic->linkResolver); ?>
     
     <?php
       // if there is a button link and button text
-      if ( $highlight->getLink("link") && $highlight->getText("linkText") ) {
+      if ( $slice->getPrimary()->getLink("link") && $slice->getPrimary()->getText("link_label") ) {
     ?>
-    <p><a href="<?= $highlight->getLink('link')->getUrl($prismic->linkResolver) ?>"><?= $highlight->getText("linkText") ?></a></p>
+    <p><a href="<?= $slice->getPrimary()->getLink('link')->getUrl($prismic->linkResolver) ?>"><?= $slice->getPrimary()->getText("link_label") ?></a></p>
     <?php } ?>
   </div>
   
   <div class="highlight-right">
-    <img src="<?= $highlight->getImage("image")->getUrl() ?>"/>
+    <img src="<?= $slice->getPrimary()->getImage("featured_image")->getUrl() ?>"/>
   </div>
 </section>
