@@ -14,7 +14,7 @@
     
     <div class="container" style="margin-top: 100px; text-align: center;">
       <h1>You're almost there!</h1>
-      <p>Follow the instructions on the <a href="https://prismic.io/docs/examples/sample-website#?lang=php" target="_blank">sample website page</a> to get started</p>
+      <p>Follow the instructions on the <a href="https://intercom.help/prismicio/examples/php-samples/sample-multi-page-site-with-navigation-in-php" target="_blank">sample website page</a> to get started</p>
     </div>
 
   </body>
