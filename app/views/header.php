@@ -24,6 +24,7 @@ if (!isset($isHomepage)) {
     <link rel="icon" type="image/png" href="/images/punch.png" />
     <link href='https://fonts.googleapis.com/css?family=Lato:400,700,900,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <? /* Required for previews and experiments */ ?>
@@ -50,7 +51,7 @@ if (!isset($isHomepage)) {
           
           <?php 
             // loop through each menu item
-            foreach ( $menuContent->getGroup('menu.menuLinks')->getArray() as $link ) { 
+            foreach ( $menuContent->getGroup('menu.menu_links')->getArray() as $link ) { 
           ?>
           <li><a href="<?= $link->getLink("link")->getUrl($prismic->linkResolver) ?>"><?= $link->getText("label") ?></a></li>
           <?php } ?>

@@ -1,16 +1,13 @@
 <?php
 
-$textSectionSlice = $slice;
-$textSection = $slice->getValue();
-
 // Add the class that defines the number of columns
-if ( $textSectionSlice->getLabel() ) {
-  $sectionClass = "text-section-" . $textSectionSlice->getLabel();
+if ( $slice->getLabel() ) {
+  $sectionClass = "text-section-" . $slice->getLabel();
 } else { 
   $sectionClass = "text-section-1col";
 }
 ?>
 
 <section class="content-section <?= $sectionClass ?>">
-  <?= $textSectionSlice->asHtml($prismic->linkResolver) ?>
+  <?= $slice->getPrimary()->getStructuredText('rich_text')->asHtml(); ?>
 </section>
