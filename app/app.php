@@ -22,19 +22,21 @@ require_once 'includes/http.php';
 // Index page
 $app->get('/', function ($request, $response) use ($app, $prismic) {
   
+  // Query the homepage content
   $api = $prismic->get_api();
-  
   $pageContent = $api->getSingle('homepage');
   if (!$pageContent) {
     include '../app/includes/templates/firstrun.php';
     return;
   }
   
+  // Query the menu content
   $menuContent = $api->getSingle('menu');
   if (!$menuContent) {
     $menuContent = null;
   }
   
+  // Render the homepage
   render($app, 'homepage', array('pageContent' => $pageContent, 'menuContent' => $menuContent));
 });
 
@@ -51,16 +53,22 @@ $app->get('/{uid}', function ($request, $response, $args) use ($app, $prismic) {
   // Retrieve the uid from the url
   $uid = $args['uid'];
   
-  // Query the API by the uid
+  // Query the API by the uid 
   $api = $prismic->get_api();
   $pageContent = $api->getByUID('page', $uid);
+
+  // Query the menu content
+  $menuContent = $api->getSingle('menu');
+  if (!$menuContent) {
+    $menuContent = null;
+  }
+
+  // Render the 404 page if no page document is found
   if (!$pageContent) {
-    render($app, '404', array('pageContent' => null, 'menuContent' => null));
+    render($app, '404', array('pageContent' => null, 'menuContent' => $menuContent));
     return;
   }
   
-  $menuContent = $api->getSingle('menu');
-  
+  // Otherwise render the page
   render($app, 'page', array('pageContent' => $pageContent, 'menuContent' => $menuContent));
 });
-
