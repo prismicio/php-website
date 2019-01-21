@@ -1,4 +1,6 @@
 <?php
+use Prismic\Dom\Link;
+use Prismic\Dom\RichText;
 
 if (!isset($title)) {
   $title = SITE_TITLE;
@@ -51,9 +53,9 @@ if (!isset($isHomepage)) {
           
           <?php 
             // loop through each menu item
-            foreach ( $menuContent->getGroup('menu.menu_links')->getArray() as $link ) { 
+            foreach ( $menuContent->data->menu_links as $link ) { 
           ?>
-          <li><a href="<?= $link->getLink("link")->getUrl($prismic->linkResolver) ?>"><?= $link->getText("label") ?></a></li>
+          <li><a href="<?= Link::asUrl($link->link, $prismic->linkResolver) ?>"><?= RichText::asText($link->label) ?></a></li>
           <?php } ?>
         </ul>
       </nav>

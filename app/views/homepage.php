@@ -1,4 +1,6 @@
 <?php
+use Prismic\Dom\Link;
+use Prismic\Dom\RichText;
 
 $prismic = $WPGLOBAL['prismic'];
 $pageContent = $WPGLOBAL['pageContent'];
@@ -11,48 +13,49 @@ $isHomepage = true;
 
 <?php include 'header.php'; ?>
 
-<?php $banner = $pageContent->getGroup('homepage.homepage_banner')->getArray()[0]; ?> 
-<section class="homepage-banner" style="background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url(<?= $banner->getImage("image")->getUrl() ?>)">
+<?php $banner = $pageContent->data->homepage_banner[0]; ?> 
+<section class="homepage-banner" style="background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url(<?= $banner->image->url ?>)">
   <div class="banner-content container">
-    <h2 class="banner-title"><?= $banner->getText("title") ?></h2>
-    <p class="banner-description"><?= $banner->getText("tagline") ?></p>
+    <h2 class="banner-title"><?= RichText::asText($banner->title) ?></h2>
+    <p class="banner-description"><?= RichText::asText($banner->tagline) ?></p>
     
     <?php 
       // If both the button link and button text are defined in the prismic.io repo
-      if  ( $banner->getLink("button_link") && $banner->getText("button_label") ) { 
+      $button_link = $banner->button_link;
+      $button_label = RichText::asText($banner->button_label);
+
+      if ( $button_link->link_type != "Any" && strlen($button_label) > 1 )  {
     ?>
-    <a href="<?= $banner->getLink("button_link")->getUrl($prismic->linkResolver) ?>" class="banner-button"><?= $banner->getText("button_label") ?></a>
+    <a href="<?= Link::asUrl($button_link, $prismic->linkResolver) ?>" class="banner-button"><?= $button_label ?></a>
     <?php } ?>
     
   </div>
 </section>
 
-<div class="container"  data-wio-id=<?= $pageContent->getId() ?>>
+<div class="container"  data-wio-id=<?= $pageContent->id ?>>
   <?php 
-    // If there are any slices
-    if ( $pageContent->getSliceZone('homepage.page_content') !== null ) {
+    // Get the slices from the page
+    $slices = $pageContent->data->page_content;
+    // Display the slices
+    foreach ( $slices as $slice ) {
       
-      // Display the slices
-      foreach ( $pageContent->getSliceZone('homepage.page_content')->getSlices() as $slice ) {
-        
-        //- Render the right markup for a given slice type.
-        switch($slice->getSliceType()) {
-          case 'text_section':
-            include("slices/text-section.php");
-            break;
-          case 'quote':
-            include("slices/quote.php");
-            break;
-          case 'full_width_image':
-            include("slices/full-width-image.php");
-            break;
-          case 'image_gallery':
-            include("slices/gallery.php");
-            break;
-          case 'image_highlight':
-            include("slices/highlight.php");
-            break;
-        }
+      //- Render the right markup for a given slice type.
+      switch($slice->slice_type) {
+        case 'text_section':
+          include("slices/text-section.php");
+          break;
+        case 'quote':
+          include("slices/quote.php");
+          break;
+        case 'full_width_image':
+          include("slices/full-width-image.php");
+          break;
+        case 'image_gallery':
+          include("slices/gallery.php");
+          break;
+        case 'image_highlight':
+          include("slices/highlight.php");
+          break;
       }
     } 
   ?>

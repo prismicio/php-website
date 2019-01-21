@@ -1,3 +1,3 @@
 <section class="full-width-image content-section">
-  <img src="<?= $slice->getPrimary()->getImage('image')->getUrl() ?>"/>
+  <img src="<?= $slice->primary->image->url ?>"/>
 </section>
