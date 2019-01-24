@@ -1,5 +1,6 @@
+<?php use Prismic\Dom\RichText ?>
 <section class="content-section quote">
   <blockquote>
-    <?= $slice->getPrimary()->getText('quote_text'); ?>
+    <?= RichText::asText($slice->primary->quote_text) ?>
   </blockquote>
 </section>

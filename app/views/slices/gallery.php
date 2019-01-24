@@ -1,19 +1,27 @@
+<?php
+use Prismic\Dom\RichText;
+use Prismic\Dom\Link;
+?>
+
 <section class="gallery content-section">
   
   <?php
-    // Loop through the gallery items
-    foreach ( $slice->getItems()->getArray() as $galleryItem ) {
+  // Loop through the gallery items
+  foreach ( $slice->items as $galleryItem ) {
   ?>
   
   <div class="gallery-item">
-    <img src="<?= $galleryItem->getImage("image")->getUrl() ?>"/>
-    <?= $galleryItem->getStructuredText("image_description")->asHtml($prismic->linkResolver); ?>
+    <img src="<?= $galleryItem->image->url ?>"/>
+    <?= RichText::asHtml($galleryItem->image_description, $prismic->linkResolver); ?>
 
     <?php
       // if there is a link and text text
-      if ( $galleryItem->getLink("link") && $galleryItem->getText("link_label") ) {
+      $link = $galleryItem->link;
+      $link_label = RichText::asText($galleryItem->link_label);
+
+      if ( $link->link_type != "Any" && strlen($link_label) > 1 )  {
     ?>
-    <p class="gallery-link"><a href="<?= $galleryItem->getLink('link')->getUrl($prismic->linkResolver) ?>"><?= $galleryItem->getText("link_label") ?></a></p>
+    <p class="gallery-link"><a href="<?= Link::asUrl($link, $prismic->linkResolver) ?>"><?= $link_label ?></a></p>
     <?php } ?>
   </div>
   <?php } ?>

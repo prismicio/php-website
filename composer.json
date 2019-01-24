@@ -1,12 +1,9 @@
 {
   "name": "PHP Quickstart",
-  "version": "0.1",
+  "version": "2.0",
   "require": {
-    "slim/slim": "3.*",
-    "prismic/php-sdk": "3.*"
-    },
-  "require-dev": {
-    "there4/slim-test-helpers": "dev-master",
-    "phpunit/phpunit": "4.*"
+    "php": ">=7.1",
+    "slim/slim": "^3.10",
+    "prismic/php-sdk": "^5.0.1"
   }
 }
