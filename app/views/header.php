@@ -46,7 +46,7 @@ if (!isset($isHomepage)) {
       
       <?php
         // if the navigation is set up in prismic.io
-        if ( $menuContent != null ) { 
+        if ( $menuContent->data != new stdClass() && $menuContent != null ) { 
       ?>
       <nav>
         <ul>
