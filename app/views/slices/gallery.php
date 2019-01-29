@@ -3,7 +3,7 @@ use Prismic\Dom\RichText;
 use Prismic\Dom\Link;
 ?>
 
-<section class="gallery content-section">
+<section class="image-gallery content-section">
   <?= RichText::asHtml($slice->primary->gallery_title); ?>
   <div class="gallery">
     <?php
