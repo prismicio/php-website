@@ -14,7 +14,8 @@ $isHomepage = true;
 <?php include 'header.php'; ?>
 
 <?php $banner = $pageContent->data->homepage_banner[0]; ?> 
-<section class="homepage-banner" style="background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url(<?= $banner->image->url ?>)">
+<?php $bannerUrl = !$banner->image ? $banner->image->url : ''; ?>
+<section class="homepage-banner" style="background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url(<?= $bannerUrl ?>)">
   <div class="banner-content container">
     <h2 class="banner-title"><?= RichText::asText($banner->title) ?></h2>
     <p class="banner-description"><?= RichText::asText($banner->tagline) ?></p>

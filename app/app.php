@@ -25,7 +25,7 @@ $app->get('/', function ($request, $response) use ($app, $prismic) {
   // Query the homepage content
   $api = $prismic->get_api();
   $pageContent = $api->getSingle('homepage');
-  if (!$pageContent) {
+  if (!$pageContent || $pageContent->data == new stdClass() ) {
     include '../app/includes/templates/firstrun.php';
     return;
   }
