@@ -1,5 +1,5 @@
 {
-  "name": "PHP Example Website",
+  "name": "php-website/example",
   "version": "2.0",
   "require": {
     "php": ">=7.1",

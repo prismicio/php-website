@@ -1,53 +1,42 @@
-## Sample Website with API-based CMS
+## Prismic & PHP Multi-Page site with navigation Example
 
-This is a PHP example website template with content managed from prismic.io (API-based CMS).
+[## Check out the dedicated article to get this project up and running
+> [Prismic project guide](https://user-guides.prismic.io/en/articles/868744-sample-multi-page-site-with-navigation-in-php)
 
-#### Getting started
 
-Read [this guide](https://intercom.help/prismicio/examples/php-samples/sample-multi-page-site-with-navigation-in-php) for instructions to create your repository and use the sample website.
-
-#### Deploy your PHP website
-
-An easy way to deploy your PHP website is to use [Heroku](http://www.heroku.com). Just follow these few simple steps once you have successfully [signed up](https://id.heroku.com/signup/www-header) and [installed the Heroku toolbelt](https://toolbelt.heroku.com/):
-
-Create a new Heroku application
-
+## 1. Install the prismic-cli
 ```
-$ heroku create
+npm install -g prismic-cli
 ```
 
-Initialize a new Git repository:
-
+## 2. Run the theme command
+This will create a new Prismic content repository, setup the custom types, and install the project code
 ```
-$ git init
-$ heroku git:remote -a your-heroku-app-name
-```
-
-Commit your code to the Git repository and deploy it to Heroku:
-
-```
-$ git add .
-$ git commit -am "make it better"
-$ git push heroku master
+prismic theme --theme-url https://github.com/prismicio/php-website --conf prismic-configuration.json
 ```
 
-Ensure you have at least one node running:
+## 3. Update your repo name
+Open your `config.php` file and update your-repo-name with your repository name
 
 ```
-$ heroku ps:scale web=1
+define('PRISMIC_URL', 'https://your-repo-name.prismic.io/api/v2');
 ```
-
-You can now browse your application online:
-
+## 4. Run the project
 ```
-$ heroku open
+composer install
+./serve.sh  
 ```
+Then you can access it at [http://localhost:3000](http://localhost:3000).
 
-### Licence
+### Learn more about using Prismic with PHP
+
+[Prismic + PHP documentation](https://prismic.io/docs/technologies/getting-started-php).
+
+### License
 
 This software is licensed under the Apache 2 license, quoted below.
 
-Copyright 2017 Prismic.io (http://www.prismic.io).
+Copyright 2021 [Prismic](http://prismic.io/).
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this project except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
 
