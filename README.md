@@ -1,34 +1,35 @@
-## Prismic & PHP Multi-Page site with navigation Example
+# Prismic & PHP Example Multi-Page Site
+> [PHP](https://www.php.net/) example multi-Page site with navigation project with content managed in [Prismic](https://prismic.io)
 
 [## Check out the dedicated article to get this project up and running
 > [Prismic project guide](https://user-guides.prismic.io/en/articles/868744-sample-multi-page-site-with-navigation-in-php)
 
 
-## 1. Install the prismic-cli
+### 1. Install the prismic-cli
 ```
 npm install -g prismic-cli
 ```
 
-## 2. Run the theme command
+### 2. Run the theme command
 This will create a new Prismic content repository, setup the custom types, and install the project code
 ```
 prismic theme --theme-url https://github.com/prismicio/php-website --conf prismic-configuration.json
 ```
 
-## 3. Update your repo name
+### 3. Update your repo name
 Open your `config.php` file and update your-repo-name with your repository name
 
 ```
 define('PRISMIC_URL', 'https://your-repo-name.prismic.io/api/v2');
 ```
-## 4. Run the project
+### 4. Run the project
 ```
 composer install
 ./serve.sh  
 ```
 Then you can access it at [http://localhost:3000](http://localhost:3000).
 
-### Learn more about using Prismic with PHP
+## Learn more about using Prismic with PHP
 
 [Prismic + PHP documentation](https://prismic.io/docs/technologies/getting-started-php).
 
